@@ -52,7 +52,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (task: NSURLSessionDataTask,response: AnyObject?) -> Void in
             
             print("Home timeline: \(response)")
-            var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
             for tweet in tweets {
                 print("text: \(tweet.text!), created: \(tweet.createdAt!)")
             }

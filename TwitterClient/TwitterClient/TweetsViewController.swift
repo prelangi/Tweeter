@@ -16,16 +16,22 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
-            self.tweets = tweets
-            print("Tweets: \(tweets)")
-        }
-        
+        //Setup table view
         tableView.dataSource = self
         tableView.delegate = self
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 500 //used only for scroll height
         tableView.reloadData()
+        
+        //Fetch Tweets
+        fetchTweets()
+        
+        //Set image for Navigation Controller titleview
+        let image : UIImage = UIImage(named: "title.png")!
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = image
+        self.navigationItem.titleView = imageView
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +39,20 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func fetchTweets() {
+        // Do any additional setup after loading the view.
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+            self.tweets = tweets
+            //print("Tweets: \(tweets)")
+            for tweet in tweets! {
+                print("Username: \(tweet.user!.name!)")
+            }
+            
+            self.tableView.reloadData()
+        }
+        
+    }
  
 
     @IBAction func onLogout(sender: AnyObject) {
@@ -44,7 +64,14 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        //FIXME: Change it to 20 later
+        if let acutalTweets = tweets {
+            return 10
+        }
+        else {
+            return 0
+        }
+        
     }
     
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -52,7 +79,8 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetsCell
+        cell.tweet = tweets![indexPath.row]
         
         return cell
     }
