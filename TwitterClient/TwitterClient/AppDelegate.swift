@@ -23,8 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             //Go to Timeline screen
             print("Current User detected \(User.currentUser!.name)")
-            var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            window?.rootViewController = vc
+            //var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
+            var nvc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+            window?.rootViewController = nvc
         }
         return true
     }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
     
     override func viewDidLoad() {
@@ -20,6 +21,11 @@ class TweetsViewController: UIViewController {
             self.tweets = tweets
             print("Tweets: \(tweets)")
         }
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +33,7 @@ class TweetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var onLogout: UIButton!
+ 
 
     @IBAction func onLogout(sender: AnyObject) {
         
@@ -35,6 +41,22 @@ class TweetsViewController: UIViewController {
         User.currentUser?.logout()
         
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 10
+    }
+    
+    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath)
+        
+        return cell
+    }
+
     /*
     // MARK: - Navigation
 

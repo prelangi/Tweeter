@@ -31,7 +31,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         //Fetch request token & redirect to authorization page
         let callbackURL = NSURL(string: "TwitterClient4CP://oauth")
         
-        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
+        //TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
         
         TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: callbackURL, scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
             print("Got the request token \(requestToken.token)")

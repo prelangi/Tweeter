@@ -87,16 +87,15 @@
 		CA45D3691C782F5C001DF5F7 /* TwitterClient */ = {
 			isa = PBXGroup;
 			children = (
+				CA45D3891C79A3A9001DF5F7 /* View Controllers */,
 				CA45D3821C78F96B001DF5F7 /* Models */,
 				CA45D37F1C7831C0001DF5F7 /* API */,
 				CA45D36A1C782F5C001DF5F7 /* AppDelegate.swift */,
-				CA45D36C1C782F5C001DF5F7 /* ViewController.swift */,
 				CA45D36E1C782F5C001DF5F7 /* Main.storyboard */,
 				CA45D3711C782F5C001DF5F7 /* Assets.xcassets */,
 				CA45D3731C782F5C001DF5F7 /* LaunchScreen.storyboard */,
 				CA45D3761C782F5C001DF5F7 /* Info.plist */,
 				CA45D37C1C783023001DF5F7 /* TwitterClient-Bridging-Header.h */,
-				CA45D3871C7951F5001DF5F7 /* TweetsViewController.swift */,
 			);
 			path = TwitterClient;
 			sourceTree = "<group>";
@@ -116,6 +115,15 @@
 				CA45D3851C78F99E001DF5F7 /* Tweet.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		CA45D3891C79A3A9001DF5F7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CA45D36C1C782F5C001DF5F7 /* ViewController.swift */,
+				CA45D3871C7951F5001DF5F7 /* TweetsViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
