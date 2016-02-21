@@ -60,7 +60,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
-                print("Error getting User")
+                print("Error getting User(error: \(error)")
                 completion(tweets: nil, error: error)
         })
         

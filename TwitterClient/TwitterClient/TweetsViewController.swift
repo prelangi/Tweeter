@@ -12,6 +12,7 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +28,11 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         fetchTweets()
         
         //Set image for Navigation Controller titleview
-        let image : UIImage = UIImage(named: "title.png")!
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        imageView.contentMode = .ScaleAspectFit
-        imageView.image = image
-        self.navigationItem.titleView = imageView
+        setNavigationBarTitle()
+        
+        //Set up refresh control
+        setupRefreshControl()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +40,25 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func setNavigationBarTitle() {
+        let image : UIImage = UIImage(named: "title.png")!
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = image
+        self.navigationItem.titleView = imageView
+        
+    }
+    
+    func setupRefreshControl() {
+        // Initialize a UIRefreshControl
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Fetching new Tweets")
+        self.refreshControl.addTarget(self, action: "fetchTweets", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+
+        
+    }
     
     func fetchTweets() {
         // Do any additional setup after loading the view.
@@ -49,6 +69,7 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
                 print("Username: \(tweet.user!.name!)")
             }
             
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
         
@@ -65,8 +86,14 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //FIXME: Change it to 20 later
-        if let acutalTweets = tweets {
-            return 10
+        if let actualTweets = tweets {
+            if actualTweets.count > 20 {
+                return 20
+            }
+            else {
+                return actualTweets.count
+            }
+            
         }
         else {
             return 0
