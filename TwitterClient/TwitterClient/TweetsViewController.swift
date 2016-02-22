@@ -112,14 +112,37 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         return cell
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        
+        var indexPath:NSIndexPath
+        var tableCell:TweetsCell
+        
+        if let sender = sender as? TweetsCell {
+            tableCell = sender as! TweetsCell
+            indexPath = tableView.indexPathForCell(tableCell)!
+            
+            let tweet = tweets![indexPath.row]
+            let detailVC = segue.destinationViewController as! TweetDetailViewController
+            detailVC.tweet = tweet
+        }
+        
+//        if let sender = sender as? UIBarButtonItem {
+//            
+//            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let composeNVC = storyboard.
+//            let composeNVC = segue.destinationViewController as! 
+//            
+//        }
+        
+
     }
-    */
+    
 
 }

@@ -32,9 +32,14 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         tweetTextView.delegate = self
         addDoneButton()
         
-        //newTweet(
+        //Setup navigationitem
+        setNavigationBarTitle()
 
-        
+        //Set border for the textView 
+        var borderColor : UIColor = UIColor(red: 0.14, green: 0.14, blue: 0.14, alpha: 1.0)
+        tweetTextView.layer.borderWidth = 0.5
+        tweetTextView.layer.borderColor = borderColor.CGColor
+        tweetTextView.layer.cornerRadius = 5.0
         
         
     }
@@ -44,6 +49,20 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func setNavigationBarTitle() {
+        //29, 202, 255
+        //0, 172, 237
+        let twitterColor: UIColor = UIColor(red: 0/255, green: 172/255, blue: 255/255, alpha: 1.0)
+        let composeImage : UIImage = UIImage(named: "compose.png")!
+        let composeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        composeImageView.contentMode = .ScaleAspectFit
+        composeImageView.image = composeImage
+        composeImageView.image = composeImageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        composeImageView.tintColor = twitterColor
+        self.navigationItem.titleView = composeImageView
+        
+    }
 
     func setupUserProfile() {
         nameLabel.text = User.currentUser?.name

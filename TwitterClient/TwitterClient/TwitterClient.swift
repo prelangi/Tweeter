@@ -92,7 +92,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     //Add support for retweet and unretweeting
     func retweet(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> ()) {
-        POST("1.1/statuses/retweet/\(tweet.id!).json",parameters: nil, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+        let params = NSMutableDictionary()
+        params["id"] = tweet.id
+        
+        POST("1.1/statuses/retweet/\(tweet.id!).json",parameters: params, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
                 let tweet = Tweet(dictionary: (response as? NSDictionary)!)
                 tweet.retweeted = true
                 completion(tweet: tweet, error: nil)
@@ -108,7 +111,11 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func unretweet(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> ()) {
-        POST("1.1/statuses/unretweet/\(tweet.id!).json",parameters: nil, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+        
+        let params = NSMutableDictionary()
+        params["id"] = tweet.id
+        
+        POST("1.1/statuses/unretweet/\(tweet.id!).json",parameters: params, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
             let tweet = Tweet(dictionary: (response as? NSDictionary)!)
             tweet.retweeted = false
             completion(tweet: tweet, error: nil)
@@ -128,6 +135,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         let params = NSMutableDictionary()
         params["id"] = tweet.id
+        print("\n\n setFavorite: params: \(params)")
         
         POST("1.1/favorites/create.json",parameters: params, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
             let tweet = Tweet(dictionary: (response as? NSDictionary)!)

@@ -28,6 +28,8 @@ class User: NSObject {
         screenname = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url"] as? String
         profileBackgroundImageUrl = dictionary["profile_background_image_url_https"] as? String
+        
+        profileBackgroundImageUrl = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
         self.dictionary = dictionary
         

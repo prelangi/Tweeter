@@ -66,6 +66,7 @@ class Tweet: NSObject {
         replyToTweetId = dictionary["in_reply_to_status_id_str"] as? Int
         retweeted = dictionary["retweeted"] as? Bool
         favorited = dictionary["favorited"] as? Bool
+        id = dictionary["id"] as? Int
         
         //Date formatters are expensive; It is better to have a static member
         let formatter = NSDateFormatter()
