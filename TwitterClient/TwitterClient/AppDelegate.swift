@@ -24,14 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //Go to Timeline screen
             print("Current User detected \(User.currentUser!.name)")
             //var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            var nvc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+            let nvc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
             window?.rootViewController = nvc
         }
         return true
     }
     
     func userDidLogout() {
-        var vc = storyboard.instantiateInitialViewController()! as UIViewController
+        let vc = storyboard.instantiateInitialViewController()! as UIViewController
         window?.rootViewController = vc
         
     }

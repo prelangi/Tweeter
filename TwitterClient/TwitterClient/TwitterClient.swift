@@ -67,6 +67,99 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     }
     
+    func createNewTweet(tweet: Tweet,
+        completion: (tweet: Tweet?, error: NSError?) -> ()) {
+            
+            let params = NSMutableDictionary()
+            params["status"] = tweet.text
+            
+            if let replyToTweetId = tweet.replyToTweetId {
+                params["in_reply_to_status_id"] = replyToTweetId
+            }
+            
+            
+            POST("1.1/statuses/update.json", parameters: params, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+                let tweet = Tweet(dictionary: (response as? NSDictionary)!)
+                completion(tweet: tweet, error: nil)
+            },
+            failure:
+            { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error while posting Tweet: \(error)")
+                completion(tweet: nil, error: error)
+            })
+
+    }
+    
+    //Add support for retweet and unretweeting
+    func retweet(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        POST("1.1/statuses/retweet/\(tweet.id!).json",parameters: nil, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+                let tweet = Tweet(dictionary: (response as? NSDictionary)!)
+                tweet.retweeted = true
+                completion(tweet: tweet, error: nil)
+            },
+            failure:
+            { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting User(error: \(error)")
+                completion(tweet: nil, error: error)
+            }
+        )
+
+        
+    }
+    
+    func unretweet(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        POST("1.1/statuses/unretweet/\(tweet.id!).json",parameters: nil, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+            let tweet = Tweet(dictionary: (response as? NSDictionary)!)
+            tweet.retweeted = false
+            completion(tweet: tweet, error: nil)
+            },
+            failure:
+            { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting User(error: \(error)")
+                completion(tweet: nil, error: error)
+            }
+        )
+        
+        
+    }
+    
+    //Add support for favoriting and unfavoriting
+    func setFavorite(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        
+        let params = NSMutableDictionary()
+        params["id"] = tweet.id
+        
+        POST("1.1/favorites/create.json",parameters: params, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+            let tweet = Tweet(dictionary: (response as? NSDictionary)!)
+            tweet.favorited = true
+            completion(tweet: tweet, error: nil)
+            },
+            failure:
+            { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting User(error: \(error)")
+                completion(tweet: nil, error: error)
+            }
+        )
+    }
+    
+    func deleteFavorite(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        
+        let params = NSMutableDictionary()
+        params["id"] = tweet.id
+        
+        POST("1.1/favorites/destroy.json",parameters: params, success: {(task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+            let tweet = Tweet(dictionary: (response as? NSDictionary)!)
+            tweet.favorited = false
+            completion(tweet: tweet, error: nil)
+            },
+            failure:
+            { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting User(error: \(error)")
+                completion(tweet: nil, error: error)
+            }
+        )
+    }
+    
     
     func openURL(url: NSURL) {
         

@@ -18,6 +18,7 @@ class User: NSObject {
     var name: String?
     var screenname: String?
     var profileImageUrl: String?
+    var profileBackgroundImageUrl: String?
     var tagline: String?
     var dictionary: NSDictionary
     
@@ -26,6 +27,7 @@ class User: NSObject {
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url"] as? String
+        profileBackgroundImageUrl = dictionary["profile_background_image_url_https"] as? String
         tagline = dictionary["description"] as? String
         self.dictionary = dictionary
         
@@ -35,7 +37,7 @@ class User: NSObject {
     class var currentUser: User? {
         get {
             if _currentUser == nil {
-                var data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData
+                let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData
                 if data != nil {
                     do {
                         var dictionary =  try NSJSONSerialization.JSONObjectWithData(data!, options: [])
