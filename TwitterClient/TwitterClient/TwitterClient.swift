@@ -40,7 +40,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         })
         { (error: NSError!) -> Void in
-            print("Error")
+            print("Login Error; Cannot login!")
             self.loginCompletion?(user:nil,error: error)
         }
         
@@ -179,10 +179,10 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             //Find the current user
             TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, success: { (task: NSURLSessionDataTask,response: AnyObject?) -> Void in
-                print("User: \(response)")
+                //print("User: \(response)")
                 let user = User(dictionary: response as! NSDictionary)
                 User.currentUser = user
-                print("Username: \(user.name)")
+                print("Username: \(user.name!)")
                 self.loginCompletion?(user:user,error:nil)
                 
                 }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in

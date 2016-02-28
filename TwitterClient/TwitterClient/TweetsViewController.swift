@@ -14,6 +14,12 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     var tweets: [Tweet]?
     var refreshControl: UIRefreshControl!
     
+    @IBOutlet weak var tweetViewLeftMargin: NSLayoutConstraint!
+    var originalLeftMargin: CGFloat = 0
+    
+    @IBOutlet weak var menuView: UIView!
+    
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
  
     @IBAction func onRetweet(sender: AnyObject) {
         
@@ -144,19 +150,44 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
             detailVC.tweet = tweet
         }
         
+      }
+    
+    //Methods for panGestureRecognizer
+    
+    @IBAction func onPan(sender: AnyObject) {
+        
+        let translation = sender.translationInView(view)
+        let velocity = sender.velocityInView(view)
         
         
         
-        
-//        if let sender = sender as? UIBarButtonItem {
-//            
-//            var storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let composeNVC = storyboard.
-//            let composeNVC = segue.destinationViewController as! 
-//            
-//        }
-        
+        if sender.state == UIGestureRecognizerState.Began {
+            print("Pan Gesture Recognier Started")
+            originalLeftMargin = tweetViewLeftMargin.constant
 
+            
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            print("Pan Gesture Recognier Changed")
+            menuView.hidden = false
+            tweetViewLeftMargin.constant = originalLeftMargin + translation.x
+        
+            
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            print("Pan Gesture Recognier Ended")
+            
+            if velocity.x > 0 {
+                tweetViewLeftMargin.constant = view.frame.width - 50
+                
+                
+            }
+            else {
+                menuView.hidden = true
+                tweetViewLeftMargin.constant = 0
+            }
+            
+        }
+        
+        
     }
     
 

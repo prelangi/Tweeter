@@ -24,8 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //Go to Timeline screen
             print("Current User detected \(User.currentUser!.name)")
             //var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
-            let nvc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
-            window?.rootViewController = nvc
+            let nvc = storyboard.instantiateViewControllerWithIdentifier("HamburgerNavigationController") as! UINavigationController
+            
+            let hamburgerViewController = nvc.viewControllers[0] as! HamburgerViewController
+            
+            
+            let menuViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+            
+            
+            menuViewController.hamburgerViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+            
+            window?.rootViewController = hamburgerViewController
         }
         return true
     }
