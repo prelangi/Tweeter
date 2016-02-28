@@ -14,6 +14,17 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     var tweets: [Tweet]?
     var refreshControl: UIRefreshControl!
     
+ 
+    @IBAction func onRetweet(sender: AnyObject) {
+        
+    }
+    
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -132,6 +143,10 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
             let detailVC = segue.destinationViewController as! TweetDetailViewController
             detailVC.tweet = tweet
         }
+        
+        
+        
+        
         
 //        if let sender = sender as? UIBarButtonItem {
 //            

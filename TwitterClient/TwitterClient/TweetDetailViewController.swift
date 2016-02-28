@@ -31,6 +31,8 @@ class TweetDetailViewController: UIViewController {
     
     @IBOutlet weak var favoriteButton: UIButton!
     
+    var retweetCount: Int = 0
+    
     
     
     
@@ -42,6 +44,7 @@ class TweetDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         setUpTweetView()
+        retweetCount = Int((tweet?.retweetCount)!)!
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,6 +80,8 @@ class TweetDetailViewController: UIViewController {
         }
         self.profileImageView.layer.cornerRadius = 10;
         self.profileImageView.clipsToBounds = true
+        
+        self.retweetCount = Int((tweet?.retweetCount)!)!
         
         
     }
@@ -128,13 +133,19 @@ class TweetDetailViewController: UIViewController {
             tweet?.retweeted = true
         }
         
+        
+        
+        
         if tweet?.retweeted == true {
-            print("Retweeting this tweet: \(tweet!.id)")
+            print("Retweeting this tweet: \(tweet!.id) count: \(retweetCount)")
+            //retweetCount = Int((tweet?.retweetCount)!)!
             TwitterClient.sharedInstance.retweet(tweet!, completion: { (tweet, error) -> () in
                 print("Retweeting this tweet")
                 if let tweet = tweet {
-                    print("Retweet: id = \(tweet.id)")
-                    self.retweetCountLabel.text = tweet.retweetCount
+                    print("Retweet: id = \(tweet.id) retweetCount: \(tweet.retweetCount)")
+                    self.retweetCount = self.retweetCount+1
+                    print("After retweet: id = \(tweet.id) retweetCount: \(tweet.retweetCount)")
+                    self.retweetCountLabel.text = "\(self.retweetCount)"
                     self.retweetButton.setImage(UIImage(named:"retweet-action-on"), forState: .Normal)
                     
                 }
@@ -143,11 +154,15 @@ class TweetDetailViewController: UIViewController {
         }
         else {
             print("Untweeting this tweet: \(tweet!.id)")
+            //retweetCount = Int((tweet?.retweetCount)!)!
             TwitterClient.sharedInstance.unretweet(tweet!, completion: { (tweet, error) -> () in
                 print("Untweeting this tweet")
+                
                 if let tweet = tweet {
-                    print("Unretweet: id = \(tweet.id)")
-                    self.retweetCountLabel.text = tweet.retweetCount
+                    print("Unretweet: id = \(tweet.id) retweetCount: \(self.retweetCount)")
+                    self.retweetCount = self.retweetCount-1
+                    print("After untweet: id = \(tweet.id) retweetCount: \(self.retweetCount)")
+                    self.retweetCountLabel.text = "\(self.retweetCount)"
                     self.retweetButton.setImage(UIImage(named:"retweet-action"), forState: .Normal)
                     
                 }
