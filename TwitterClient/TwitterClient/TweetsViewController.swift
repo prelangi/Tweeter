@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, TweetsCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
@@ -21,15 +21,7 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     @IBOutlet weak var menuView: UIView!
     
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
- 
-    @IBAction func onRetweet(sender: AnyObject) {
-        
-    }
-    
-    
-    @IBAction func onFavorite(sender: AnyObject) {
-        
-    }
+
     
     
     override func viewDidLoad() {
@@ -41,6 +33,8 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 500 //used only for scroll height
         tableView.reloadData()
+        
+        
         
         //Fetch Tweets
         fetchTweets()
@@ -138,6 +132,7 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         
     }
     
+    
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
@@ -145,8 +140,20 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
         
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetsCell
         cell.tweet = tweets![indexPath.row]
+        cell.delegate = self
         
         return cell
+    }
+    
+    func tweetsCell(tweetsCell: TweetsCell, profileImageClicked: Bool?) {
+        let indexPath = tableView.indexPathForCell(tweetsCell)
+        let tweet = tweets![indexPath!.row]
+        
+        let profileNVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
+        let profileVC = profileNVC.viewControllers[0] as! ProfileViewController
+        profileVC.user = tweet.user
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        
     }
 
     

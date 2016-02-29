@@ -195,7 +195,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="146.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w2S-5p-oOe">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w2S-5p-oOe">
                                                     <rect key="frame" x="14" y="15" width="89" height="76"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="76" id="NgX-wH-urv"/>

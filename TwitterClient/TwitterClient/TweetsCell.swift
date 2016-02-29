@@ -8,9 +8,15 @@
 
 import UIKit
 
+
+protocol TweetsCellDelegate {
+    func tweetsCell(tweetsCell: TweetsCell, profileImageClicked: Bool?)
+}
+
 class TweetsCell: UITableViewCell {
     
     
+    var delegate: TweetsCellDelegate?
     
     @IBOutlet weak var retweetButton: UIButton!
     
@@ -144,10 +150,19 @@ class TweetsCell: UITableViewCell {
             self.profileImage.layer.cornerRadius = 10;
             self.profileImage.clipsToBounds = true
             
+            let tapGestureRecognier = UITapGestureRecognizer(target: self, action: "onTap")
+            self.profileImage.addGestureRecognizer(tapGestureRecognier)
+            
             
         }
     }
     
+    
+    func onTap() {
+        print("Tell the Tweets VC that image was clicked")
+        delegate?.tweetsCell(self, profileImageClicked: true)
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
