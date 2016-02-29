@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var followersCount: UILabel!
     
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,10 +41,15 @@ class ProfileViewController: UIViewController {
     }
     
     func setupUserProfile() {
-        nameLabel.text = User.currentUser?.name
-        screenLabel.text = User.currentUser?.screenname
         
-        if let imageURL = User.currentUser?.profileImageUrl {
+        if(user == nil) {
+            user = User.currentUser!
+        }
+        
+        nameLabel.text = user!.name
+        screenLabel.text = user!.screenname
+        
+        if let imageURL = user!.profileImageUrl {
             print("Profile Image URL: \(imageURL)")
             let imageURLFinal = NSURL(string: imageURL)
             profileImageView.setImageWithURL(imageURLFinal!)
@@ -54,7 +61,7 @@ class ProfileViewController: UIViewController {
         self.profileImageView.layer.cornerRadius = 10;
         self.profileImageView.clipsToBounds = true
         
-        if let backgroundimageURL = User.currentUser?.profileBackgroundImageUrl {
+        if let backgroundimageURL = user!.profileBackgroundImageUrl {
             print("Background Image URL: \(backgroundimageURL)")
             let imageURLFinal = NSURL(string: backgroundimageURL)
             backgroundImageView.setImageWithURL(imageURLFinal!)
@@ -62,6 +69,9 @@ class ProfileViewController: UIViewController {
         else {
             backgroundImageView.image = nil
         }
+        
+        self.followingCount.text = user!.followingCount
+        self.followersCount.text = user!.followersCount
         
         //tweetCount = User.currentUser?.
     }

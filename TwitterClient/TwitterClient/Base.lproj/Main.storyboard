@@ -640,7 +640,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhi-fq-n1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1251" y="109"/>
+            <point key="canvasLocation" x="1623" y="813"/>
         </scene>
         <!--Hamburger View Controller-->
         <scene sceneID="Dk7-kM-qWt">
@@ -749,7 +749,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zsh-xk-Ta4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2994" y="1166"/>
+            <point key="canvasLocation" x="1170" y="1638"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ch7-13-jqM">

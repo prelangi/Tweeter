@@ -21,6 +21,8 @@ class User: NSObject {
     var profileBackgroundImageUrl: String?
     var tagline: String?
     var dictionary: NSDictionary
+    var followersCount: String?
+    var followingCount: String? //friends_count in Twitter API
     
     //Constructor
     init(dictionary: NSDictionary) {
@@ -31,6 +33,8 @@ class User: NSObject {
         
         profileBackgroundImageUrl = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
+        followersCount = "\(dictionary["followers_count"]!)"
+        followingCount = "\(dictionary["friends_count"]!)"
         self.dictionary = dictionary
         
     }

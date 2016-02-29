@@ -74,14 +74,6 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.profileImageView.layer.cornerRadius = 10;
         self.profileImageView.clipsToBounds = true
         
-//        if let backgroundimageURL = User.currentUser?.profileBackgroundImageUrl {
-//            print("Background Image URL: \(backgroundimageURL)")
-//            let imageURLFinal = NSURL(string: backgroundimageURL)
-//            backgroundImageView.setImageWithURL(imageURLFinal!)
-//        }
-//        else {
-//            backgroundImageView.image = nil
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +92,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath)
         let titles = ["Profile","Home Timeline","Mentions"]
         cell.textLabel!.text = titles[indexPath.row]
+        //cell.textLabel?.textAlignment = .Right
         return cell
         
     }
