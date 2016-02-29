@@ -13,11 +13,11 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var profileNavigationViewController: UIViewController!
-    private var tweetsNavigationViewController: UIViewController!
-    private var mentionsNavigationViewController: UIViewController!
+    private var profileNavigationViewController: UINavigationController!
+    private var tweetsNavigationViewController: UINavigationController!
+    private var mentionsNavigationViewController: UINavigationController!
     
-    var viewControllers: [UIViewController] = []
+    var viewControllers: [UINavigationController] = []
     var hamburgerViewController: HamburgerViewController!
     
     
@@ -30,14 +30,22 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         //Set up VCs
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        profileNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
-        mentionsNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
-        tweetsNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
+        tweetsNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+        let tweetsVC = tweetsNavigationViewController.viewControllers[0] as! TweetsViewController
+        tweetsVC.mentionsView = false
+
+        
+        mentionsNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
+        let mentionsVC = mentionsNavigationViewController.viewControllers[0] as! TweetsViewController
+        mentionsVC.mentionsView = true
+        
+
+        profileNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController") as! UINavigationController
         
         //add all controllers
         viewControllers.append(profileNavigationViewController)
-        viewControllers.append(mentionsNavigationViewController)
         viewControllers.append(tweetsNavigationViewController)
+        viewControllers.append(mentionsNavigationViewController)
         
         
         setupUserProfile()

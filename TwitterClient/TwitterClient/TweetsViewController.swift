@@ -13,6 +13,7 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]?
     var refreshControl: UIRefreshControl!
+    var mentionsView: Bool = false
     
     @IBOutlet weak var tweetViewLeftMargin: NSLayoutConstraint!
     var originalLeftMargin: CGFloat = 0
@@ -78,16 +79,35 @@ class TweetsViewController: UIViewController,UITableViewDataSource, UITableViewD
     }
     
     func fetchTweets() {
-        // Do any additional setup after loading the view.
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
-            self.tweets = tweets
-            //print("Tweets: \(tweets)")
-            for tweet in tweets! {
-                print("Username: \(tweet.user!.name!)")
+        
+        if(mentionsView) {
+            TwitterClient.sharedInstance.mentionsWithParams(nil) {(tweets, error) -> () in
+                self.tweets = tweets
+                //print("Tweets: \(tweets)")
+                for tweet in tweets! {
+                    print("Username: \(tweet.user!.name!)")
+                }
+                
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+
+                
             }
             
-            self.refreshControl.endRefreshing()
-            self.tableView.reloadData()
+        }
+        else {
+            
+            // Do any additional setup after loading the view.
+            TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+                self.tweets = tweets
+                //print("Tweets: \(tweets)")
+                for tweet in tweets! {
+                    print("Username: \(tweet.user!.name!)")
+                }
+            
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+            }
         }
         
     }

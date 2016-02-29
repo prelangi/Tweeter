@@ -67,6 +67,23 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     }
     
+    func mentionsWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        GET("1.1/statuses/mentions_timeline.json",parameters: params, success: { (task: NSURLSessionDataTask,response: AnyObject?) -> Void in
+            
+            print("Home timeline: \(response)")
+            let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            for tweet in tweets {
+                print("text: \(tweet.text!), created: \(tweet.createdAt!)")
+            }
+            completion(tweets: tweets, error: nil)
+            
+            
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting User(error: \(error)")
+                completion(tweets: nil, error: error)
+        })
+    }
+    
     func createNewTweet(tweet: Tweet,
         completion: (tweet: Tweet?, error: NSError?) -> ()) {
             
