@@ -834,7 +834,6 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pp-jI-bjJ">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
-                                <color key="backgroundColor" red="1" green="0.43529412150000002" blue="0.81176471709999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="MM2-b5-UFD" appends="YES" id="npz-0B-M0z"/>
@@ -883,22 +882,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uOo-y7-khe">
-                                <rect key="frame" x="0.0" y="212" width="320" height="356"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uOo-y7-khe">
+                                <rect key="frame" x="0.0" y="184" width="320" height="384"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" id="GVc-KF-av7">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" rowHeight="56" id="GVc-KF-av7">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GVc-KF-av7" id="vwu-UH-OMz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="55.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C11-5c-kiW">
-                                <rect key="frame" x="20" y="86" width="100" height="97"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C11-5c-kiW">
+                                <rect key="frame" x="50" y="86" width="73" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="QJl-70-hXp"/>
+                                    <constraint firstAttribute="height" constant="73" id="iDe-JF-P1M"/>
+                                </constraints>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="207-kg-WlY">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -909,8 +912,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uOo-y7-khe" firstAttribute="top" secondItem="C11-5c-kiW" secondAttribute="bottom" constant="25" id="CnH-Vo-FR7"/>
+                            <constraint firstItem="aIq-mT-3ck" firstAttribute="top" secondItem="uOo-y7-khe" secondAttribute="bottom" id="ICW-5S-iKH"/>
+                            <constraint firstAttribute="trailing" secondItem="uOo-y7-khe" secondAttribute="trailing" id="Q4e-k0-5vH"/>
+                            <constraint firstItem="uOo-y7-khe" firstAttribute="leading" secondItem="kKt-uE-gio" secondAttribute="leading" id="QJ0-AH-RaT"/>
                             <constraint firstItem="207-kg-WlY" firstAttribute="top" secondItem="aqT-PA-Jvu" secondAttribute="bottom" id="TPh-fw-dDs"/>
                             <constraint firstItem="207-kg-WlY" firstAttribute="leading" secondItem="kKt-uE-gio" secondAttribute="leading" id="fjX-81-HrF"/>
+                            <constraint firstItem="C11-5c-kiW" firstAttribute="leading" secondItem="kKt-uE-gio" secondAttribute="leading" constant="50" id="h9O-5e-Vo7"/>
+                            <constraint firstItem="C11-5c-kiW" firstAttribute="top" secondItem="207-kg-WlY" secondAttribute="bottom" constant="22" id="iAS-KM-8Fw"/>
                             <constraint firstAttribute="trailing" secondItem="207-kg-WlY" secondAttribute="trailing" id="sGI-5t-pMO"/>
                         </constraints>
                     </view>

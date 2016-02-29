@@ -19,7 +19,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     var viewControllers: [UINavigationController] = []
     var hamburgerViewController: HamburgerViewController!
-    
+    var menuimages: [UIImage] = [];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,8 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         viewControllers.append(tweetsNavigationViewController)
         viewControllers.append(mentionsNavigationViewController)
         
+        //setup images
+        setupImages()
         
         setupUserProfile()
         
@@ -57,6 +59,18 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         //tweetsNavigationViewController = storyboard.instantiateViewControllerWithIdentifier(<#T##identifier: String##String#>)
         tableView.reloadData()
         
+        
+        
+    }
+    
+    func setupImages() {
+        let userImage = UIImage(named: "User_50.png")
+        let timelineImage = UIImage(named: "Timeline_50.png")
+        let mentionsImage = UIImage(named: "Mentions_50.png")
+        
+        menuimages.append(userImage!)
+        menuimages.append(timelineImage!)
+        menuimages.append(mentionsImage!)
         
     }
     
@@ -91,8 +105,12 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath)
-        let titles = ["Profile","Timeline","@Mentions"]
+        let titles = ["PROFILE","TIMELINE","MENTIONS"]
         cell.textLabel!.text = titles[indexPath.row]
+        cell.textLabel!.font = UIFont.boldSystemFontOfSize(16.0)
+        
+        
+        cell.imageView?.image = menuimages[indexPath.row]
         //cell.textLabel?.textAlignment = .Right
         return cell
         
