@@ -30,6 +30,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         //Set up VCs
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         tweetsNavigationViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
         let tweetsVC = tweetsNavigationViewController.viewControllers[0] as! TweetsViewController
         tweetsVC.mentionsView = false
@@ -90,7 +91,7 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath)
-        let titles = ["Profile","Home Timeline","Mentions"]
+        let titles = ["Profile","Timeline","@Mentions"]
         cell.textLabel!.text = titles[indexPath.row]
         //cell.textLabel?.textAlignment = .Right
         return cell

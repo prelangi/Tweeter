@@ -20,10 +20,20 @@ class HamburgerViewController: UIViewController {
     var originalLeftMargin: CGFloat = 0
     
     var contentViewController:UIViewController! {
-        didSet {
+        didSet(oldContentViewController) {
             view.layoutIfNeeded()
             
+            if oldContentViewController != nil {
+                oldContentViewController.willMoveToParentViewController(nil)
+                oldContentViewController.view.removeFromSuperview()
+                oldContentViewController.didMoveToParentViewController(nil)
+            }
+            
+            contentViewController.willMoveToParentViewController(self)
+            
             contentView.addSubview(contentViewController.view)
+            
+            contentViewController.didMoveToParentViewController(self)
             
             //Once contentView is set; make it occupy the whole screen
             UIView.animateWithDuration(0.3) { () -> Void in

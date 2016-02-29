@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var screenLabel: UILabel!
@@ -26,13 +27,23 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var followersCount: UILabel!
     
+    var tweets: [Tweet]?
+    
     var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         setupUserProfile()
+        
+        fetchTweets()
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,10 +51,46 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let actualTweets = tweets {
+            if actualTweets.count > 20 {
+                return 20
+            }
+            else {
+                return actualTweets.count
+            }
+            
+        }
+        else {
+            return 0
+        }
+        
+        
+        
+    }
+    
+    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell", forIndexPath: indexPath) as! ProfileCell
+        cell.tweet = tweets![indexPath.row]
+        return cell
+        
+        
+        
+    }
+    
     func setupUserProfile() {
         
         if(user == nil) {
             user = User.currentUser!
+            self.navigationItem.title = "Me"
+        }
+        else {
+            self.navigationItem.title = user!.name
         }
         
         nameLabel.text = user!.name
@@ -75,6 +122,20 @@ class ProfileViewController: UIViewController {
         self.tweetCount.text = user!.tweetsCount
         
         //tweetCount = User.currentUser?.
+        TwitterClient.sharedInstance.userTimeline(user!) { (tweets, error) -> () in
+            self.tweets = tweets
+            
+        }
+    }
+    
+    func fetchTweets() {
+        TwitterClient.sharedInstance.userTimeline(user!) { (tweets, error) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            
+        }
+    
+        
     }
     
 
