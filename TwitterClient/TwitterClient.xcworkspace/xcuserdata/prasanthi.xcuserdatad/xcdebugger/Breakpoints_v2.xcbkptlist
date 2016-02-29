@@ -90,22 +90,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterClient/TweetsViewController.swift"
-            timestampString = "478401986.720501"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "tweetsCell(_:profileImageClicked:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TwitterClient/TweetsViewController.swift"
             timestampString = "478402066.350181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -121,89 +105,90 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TwitterClient/ProfileViewController.swift"
-            timestampString = "478404104.435363"
+            filePath = "TwitterClient/ViewController.swift"
+            timestampString = "478409137.74767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "ProfileViewController"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "onLogin(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterClient/User.swift"
+            timestampString = "478413610.676889"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "User"
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TwitterClient.ProfileViewController.screenLabel.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  symbolName = "TwitterClient.User.name.getter : Swift.Optional&lt;Swift.String&gt;"
                   moduleName = "TwitterClient"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/ProfileViewController.swift"
-                  timestampString = "478407322.659223"
+                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/User.swift"
+                  timestampString = "478413610.686865"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterClient.User.name.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "TwitterClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/User.swift"
+                  timestampString = "478413610.687079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterClient.User.init (TwitterClient.User.Type)(dictionary : __ObjC.NSDictionary) -&gt; TwitterClient.User"
+                  moduleName = "TwitterClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/User.swift"
+                  timestampString = "478413610.687231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "83">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterClient.User.name.materializeForSet : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "TwitterClient"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/User.swift"
+                  timestampString = "478413610.687382"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
                   offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TwitterClient.ProfileViewController.screenLabel.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
-                  moduleName = "TwitterClient"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/ProfileViewController.swift"
-                  timestampString = "478407322.659391"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TwitterClient.ProfileViewController.screenLabel.materializeForSet : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
-                  moduleName = "TwitterClient"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/ProfileViewController.swift"
-                  timestampString = "478407322.659537"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TwitterClient.ProfileViewController.init (TwitterClient.ProfileViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; TwitterClient.ProfileViewController"
-                  moduleName = "TwitterClient"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/ProfileViewController.swift"
-                  timestampString = "478407322.659678"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "292">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TwitterClient.ProfileViewController.init (TwitterClient.ProfileViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TwitterClient.ProfileViewController&gt;"
-                  moduleName = "TwitterClient"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/prasanthi/Documents/CodePath_Submission/Tweeter/TwitterClient/TwitterClient/ProfileViewController.swift"
-                  timestampString = "478407322.659826"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "194">
                </Location>
             </Locations>
          </BreakpointContent>

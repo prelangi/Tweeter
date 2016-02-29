@@ -72,6 +72,7 @@ class ProfileViewController: UIViewController {
         
         self.followingCount.text = user!.followingCount
         self.followersCount.text = user!.followersCount
+        self.tweetCount.text = user!.tweetsCount
         
         //tweetCount = User.currentUser?.
     }

@@ -34,7 +34,10 @@ class ViewController: UIViewController {
             (user:User?, error: NSError?) in
             if user != nil {
                 //perform segue
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                //self.performSegueWithIdentifier("loginSegue", sender: self)
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.setupHamburgerVC()
             }
             else {
                 //handle login error

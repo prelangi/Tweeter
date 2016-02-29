@@ -21,8 +21,18 @@ class User: NSObject {
     var profileBackgroundImageUrl: String?
     var tagline: String?
     var dictionary: NSDictionary
+    
+    var followersCountIntValue: Int?
+    var followersCountInK: Int?
     var followersCount: String?
+    
+    var followingCountIntValue: Int?
+    var followingCountInK: Int?
     var followingCount: String? //friends_count in Twitter API
+    
+    var tweetsCountIntValue: Int?
+    var tweetsCountInK: Int?
+    var tweetsCount: String?
     
     //Constructor
     init(dictionary: NSDictionary) {
@@ -33,8 +43,49 @@ class User: NSObject {
         
         profileBackgroundImageUrl = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
-        followersCount = "\(dictionary["followers_count"]!)"
-        followingCount = "\(dictionary["friends_count"]!)"
+        
+        followersCountIntValue = dictionary["followers_count"]! as! Int
+        followersCountInK = followersCountIntValue!/1000
+        //print("followersCountIntValue: \(followersCountIntValue) followersCountInK: \(followersCountInK)")
+        if followersCountInK > 0 {
+            followersCount = "\(followersCountInK!)K"
+        }
+        else {
+            followersCount = "\(dictionary["followers_count"]!)"
+        }
+        print("followersCountIntValue: \(followersCountIntValue) followersCountInK: \(followersCountInK)")
+        
+        
+        
+        followingCountIntValue = dictionary["friends_count"]! as! Int
+        followingCountInK = followingCountIntValue!/1000
+        print("followingCountIntValue: \(followingCountIntValue) followingCountInK: \(followingCountInK)")
+        if followingCountInK > 0 {
+            followingCount = "\(followingCountInK!)K"
+        }
+        else {
+            followingCount = "\(dictionary["friends_count"]!)"
+        }
+        print("followingCount: \(followingCount)")
+        
+        
+        
+        
+        tweetsCountIntValue = dictionary["statuses_count"]! as! Int
+        tweetsCountInK = tweetsCountIntValue!/1000
+        print("tweetsCountIntValue: \(tweetsCountIntValue) tweetsCountInK: \(tweetsCountInK)")
+        if tweetsCountInK > 0 {
+            tweetsCount = "\(tweetsCountInK!)K"
+        }
+        else {
+            tweetsCount = "\(dictionary["statuses_count"]!)"
+        }
+        print("tweetsCount: \(tweetsCount)")
+        
+        
+        
+
+        
         self.dictionary = dictionary
         
     }
@@ -89,6 +140,18 @@ class User: NSObject {
         
         //Use NSNotifications to broadcast that User logged out
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
+        
+    }
+    
+    
+    func getCountInK(count: Int)-> String {
+        var result = "\(count)"
+        if (count/1000) > 0 {
+            result = "\(count/1000)K"
+        }
+        
+        
+        return result
         
     }
     
